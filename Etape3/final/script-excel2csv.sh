@@ -1,5 +1,5 @@
 #!/bin/bash
-input_file=$1
+input_file=$1 # essaye non concluant pour le moment
 csv_file="resultat.csv"
 
 
@@ -17,6 +17,7 @@ tr "'" " " < "resultat_brut.csv" > "resultat_brut_temporaire.csv"
 sed -E 's/"([^"]*)"/\1/g' "resultat_brut_temporaire.csv" > "$csv_file"
 rm "resultat_brut_temporaire.csv"
 #tri du fichier csv
+
 
 #tri en médailles d'or
 #tri en médailles d'argent
@@ -49,5 +50,11 @@ awk -F',' 'NR>1 {print $0}' "$csv_file" |
    #enlever les 2 dernières lignes lignes du haut de tableau excel
    sed '$d' |
    sed '$d' > "fichier_$csv_file"
+
+while IFS=',' read -r rank pays reste; do
+    iso_code=$(grep -i "^$pays," "drapeau.csv" | cut -d',' -f2)
+    echo "$rank,$pays,$iso_code,$reste"
+done < "fichier_$csv_file" > "temp.csv"
+mv "temp.csv" "fichier_$csv_file"
 
 docker rm -f excel2csv-container

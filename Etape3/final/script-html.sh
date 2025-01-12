@@ -45,11 +45,15 @@ csv_file="resultat.csv"
 
 </head>
 <body>
+<header>
+    <h1> Résultat JO 2024 </h1>
+    
+</header>
     <table>
         <thead>
             <tr>
-                <th> Drapeau </th>
                 <th> Classement </th>
+                <th> Drapeau </th>
                 <th> Pays </th>
                 <th> OR </th>
                 <th> ARGENT </th>
@@ -60,12 +64,12 @@ csv_file="resultat.csv"
 " >> Tableau2html.html;
 
 # faire un egrep pour avoir le classement pays, medailles
-while IFS=',' read -r classement pays or argent bronze
+while IFS=',' read -r classement pays iso_code or argent bronze
 do
     echo "
         <tr>
-            <td><img src='flags/${pays}.png' alt='${pays}'>  </td>
             <td>$classement</td>
+            <td><img src='flags/${iso_code}_w20.png' alt='${pays}'>  </td>
             <td>$pays</td>
             <td>$or</td>
             <td>$argent</td>
