@@ -3,7 +3,7 @@ input_file=$1 # essaye non concluant pour le moment
 csv_file="resultat.csv"
 
 
-docker run -d --name excel2csv-container --platform linux/amd64 bigpapoo/sae103-excel2csv tail -f /dev/null
+docker run -d --name excel2csv-container sae103-excel2csv tail -f /dev/null 
 docker cp ./"Tableau des médailles v2.xlsx" excel2csv-container:/data
 docker exec excel2csv-container ssconvert /data/"Tableau des médailles v2.xlsx" /data/resultat_brut.csv
 docker cp excel2csv-container:/data/resultat_brut.csv resultat_brut.csv

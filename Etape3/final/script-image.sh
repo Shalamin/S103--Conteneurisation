@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Paramètres pour les images
-MAX_DIM="960x600"
 MAX_SIZE="153600"  # 150 Ko
 largeurMax=960
 hauteurMax=600
 largeurMin=320
 largeurMin=200
+
 mkdir -p images_output
 
 for fichier in image/*
 do
 
-    docker run -d --name imagick-container bigpapoo/sae103-imagick -c "sleep 999999"
+    docker run -d --name imagick-container sae103-imagick -c "sleep 999999"
     docker cp $fichier imagick-container:/data/
     BASENAME=$(basename "$fichier" | cut -d. -f1)
     IMAGE_SIZE=$(stat --format=%s "$fichier")

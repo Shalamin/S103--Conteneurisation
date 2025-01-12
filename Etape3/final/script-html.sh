@@ -20,6 +20,15 @@ csv_file="resultat.csv"
       header {
           text-align: center;
           margin-bottom: 4px;
+          position: relative;
+          margin :0;
+      }
+      header > img {
+          width: 20px;
+          height: 10px;
+          top :10px;
+          right: 10px;
+          margin : 0;
       }
       table {
           width: 60%;
@@ -27,6 +36,11 @@ csv_file="resultat.csv"
           margin: 0;
           
       }
+      h1{
+          font-size: 5px;
+          margin : 0;
+      }
+
       th, td {
           border: 1px solid #000;
           padding: 1px;
@@ -46,9 +60,10 @@ csv_file="resultat.csv"
 </head>
 <body>
 <header>
-    <h1> Résultat JO 2024 </h1>
-    
+    <h1 style='font-size: 5px; font-weight: 100;'> Résultat JO 2024 </h1>
+    <img src='flags/paris_2024.svg.png' alt='Logo JO 2024' witdh='75' height='50'>
 </header>
+<main>
     <table>
         <thead>
             <tr>
@@ -78,6 +93,7 @@ do
 done < "fichier_$csv_file"
 echo "</tbody>
     </table>
+    </main>
 </body>
 </html>
 " >> Tableau2html.html
